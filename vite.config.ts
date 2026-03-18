@@ -2,7 +2,9 @@ import path from "node:path";
 import { crx } from "@crxjs/vite-plugin";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
+import zip from "vite-plugin-zip-pack";
 import manifest from "./manifest.config";
+import pkg from "./package.json";
 
 export default defineConfig({
 	resolve: {
@@ -10,14 +12,10 @@ export default defineConfig({
 			"@": `${path.resolve(__dirname, "./src")}`,
 		},
 	},
-	plugins: [react(), crx({ manifest })],
+	plugins: [react(), crx({ manifest }), zip({ outDir: "./dist", outFileName: `${pkg.name}-v${pkg.version}.zip` })],
 	server: {
 		cors: {
 			origin: [/chrome-extension:\/\//],
 		},
-	},
-	build: {
-		outDir: "./build",
-		emptyOutDir: true,
 	},
 });
