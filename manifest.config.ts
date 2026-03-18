@@ -16,6 +16,12 @@ export default defineManifest({
 		},
 		default_popup: "src/popup/index.html",
 	},
+	content_scripts: [
+		{
+			js: ["src/content/main.tsx"],
+			matches: host_permissions,
+		},
+	],
 	host_permissions,
 	permissions: ["activeTab"],
 });

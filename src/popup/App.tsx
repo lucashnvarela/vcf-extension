@@ -1,6 +1,6 @@
 import crxLogo from "@/assets/crx.svg";
-import "@/popup/App.css";
 import pkg from "../../package.json";
+import "./App.css";
 
 export default function App() {
 	return (
